@@ -1,5 +1,3 @@
-using System.Security.Cryptography.X509Certificates;
-
 namespace ParabolicReflectorDish.Tests
 {
     public class DishTests
@@ -16,5 +14,10 @@ namespace ParabolicReflectorDish.Tests
             
             Assert.That(dish.TotalLoad == 0);
         }
+    }
+
+    public class Dish
+    {
+        public int TotalLoad => 0;
     }
 }
