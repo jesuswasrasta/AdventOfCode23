@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace ParabolicReflectorDish.Tests
 {
     public class DishTests
@@ -26,21 +28,26 @@ namespace ParabolicReflectorDish.Tests
 
         [Test(Description = "Se creo un disco vuoto e ne mostro la configurazione, avrò una matrice 10x10 di soli '.'")]
         public void MostraConfigurazioneVuota() {
-            var expectedConfiguration =
-                ".........." + Environment.NewLine +
-                ".........." + Environment.NewLine +
-                ".........." + Environment.NewLine +
-                ".........." + Environment.NewLine +
-                ".........." + Environment.NewLine +
-                ".........." + Environment.NewLine +
-                ".........." + Environment.NewLine +
-                ".........." + Environment.NewLine +
-                ".........." + Environment.NewLine +
-                "..........";
+            var expectedConfiguration = EmptyConfiguration();
+
 
             var dish = new Dish();
             dish.ShowConfiguration();
-            Assert.AreEqual(expectedConfiguration, outputStream.ToString());
+            Assert.That(outputStream.ToString(), Is.EqualTo(expectedConfiguration));
+        }
+
+        private string EmptyConfiguration()
+        {
+            var puntini = "..........";
+            var newLine = Environment.NewLine;
+            var expectedConfiguration = "";
+
+            for (int i = 0; i < 9; i++)
+            {
+                expectedConfiguration += $"{puntini}{newLine}";
+            }
+            expectedConfiguration += $"{puntini}";
+            return expectedConfiguration;
         }
 
         private StringWriter GetOutputStream()
