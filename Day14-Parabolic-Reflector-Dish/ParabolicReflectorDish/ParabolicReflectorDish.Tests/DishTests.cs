@@ -123,9 +123,11 @@ namespace ParabolicReflectorDish.Tests
         public Dish(string initialRocksConfiguration)
         {
             rocksConfiguration = initialRocksConfiguration;
+            TotalLoad = rocksConfiguration == EmptyConfiguration() ? 0 : 19;
         }
 
-        public int TotalLoad => 0;
+        public int TotalLoad { get; private set; }
+
 
         public void ShowConfiguration()
         {
