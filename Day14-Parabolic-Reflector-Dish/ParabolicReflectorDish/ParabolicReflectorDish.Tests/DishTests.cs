@@ -118,4 +118,5 @@ namespace ParabolicReflectorDish.Tests
             return stringWriter;
         }
     }
+
 }

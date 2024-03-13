@@ -3,6 +3,7 @@ namespace ParabolicReflectorDish.Tests;
 public class Dish
 {
     private string rocksConfiguration;
+    private CalcolatoreDelCarico calcolatoreDelCarico;
 
     public Dish() : this(EmptyConfiguration()) { }
 
@@ -20,20 +21,18 @@ public class Dish
         return expectedConfiguration;
     }
 
-    public Dish(string initialRocksConfiguration)
+    public Dish(string initialRocksConfiguration) : this(initialRocksConfiguration, new CalcolatoreDelCarico())
     {
-        rocksConfiguration = initialRocksConfiguration;
-        if (rocksConfiguration == EmptyConfiguration())
-        {
-            TotalLoad = 0;
-        }
-        else
-        {
-            TotalLoad = 19;
-        }
+       
     }
 
-    public int TotalLoad { get; private set; }
+    public Dish(string initialRocksConfiguration, CalcolatoreDelCarico calcolatoreDelCarico)
+    {
+        this.calcolatoreDelCarico = calcolatoreDelCarico;
+        rocksConfiguration = initialRocksConfiguration;
+    }
+
+    public int TotalLoad => calcolatoreDelCarico.CalcolaCarico(rocksConfiguration);
 
 
     public void ShowConfiguration()
