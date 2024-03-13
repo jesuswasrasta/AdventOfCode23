@@ -75,6 +75,27 @@ namespace ParabolicReflectorDish.Tests
             var dish = new Dish(initialConfiguration);
             Assert.That(dish.TotalLoad, Is.EqualTo(19));
         }
+        
+        [Test(Description = "Il carico calcolato di una configurazione con una roccia tonda in riga 1 e una roccia tonda in riga 2 è 19")]
+        public void Carico19ConRocciaRiga1e2UsandoCalcolatoreDelCarico()
+        {
+            var initialConfiguration =
+                "...O......" + Environment.NewLine +
+                "....O....." + Environment.NewLine +
+                ".....#...." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                "..........";
+
+
+            var calcolatoreDelCarico = new CalcolatoreDelCarico();
+            var dish = new Dish(initialConfiguration, calcolatoreDelCarico);
+            Assert.That(dish.TotalLoad, Is.EqualTo(19));
+        }
 
         private string EmptyConfiguration()
         {
@@ -96,43 +117,5 @@ namespace ParabolicReflectorDish.Tests
             Console.SetOut(stringWriter);
             return stringWriter;
         }
-    }
-    
-
-
-    public class Dish
-    {
-        private string rocksConfiguration;
-
-        public Dish() : this(EmptyConfiguration()) { }
-
-        private static string EmptyConfiguration()
-        {
-            var puntini = "..........";
-            var newLine = Environment.NewLine;
-            var expectedConfiguration = "";
-
-            for (int i = 0; i < 9; i++)
-            {
-                expectedConfiguration += $"{puntini}{newLine}";
-            }
-            expectedConfiguration += $"{puntini}";
-            return expectedConfiguration;
-        }
-
-        public Dish(string initialRocksConfiguration)
-        {
-            rocksConfiguration = initialRocksConfiguration;
-            TotalLoad = rocksConfiguration == EmptyConfiguration() ? 0 : 19;
-        }
-
-        public int TotalLoad { get; private set; }
-
-
-        public void ShowConfiguration()
-        {
-            Console.Write(rocksConfiguration);
-        }
-
     }
 }
