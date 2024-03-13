@@ -82,20 +82,35 @@ namespace ParabolicReflectorDish.Tests
 
     public class Dish
     {
-        public Dish(string expectedConfiguration)
+        private string rocksConfiguration;
+
+        public Dish() : this(EmptyConfiguration()) { }
+
+        private static string EmptyConfiguration()
         {
-            throw new NotImplementedException();
+            var puntini = "..........";
+            var newLine = Environment.NewLine;
+            var expectedConfiguration = "";
+
+            for (int i = 0; i < 9; i++)
+            {
+                expectedConfiguration += $"{puntini}{newLine}";
+            }
+            expectedConfiguration += $"{puntini}";
+            return expectedConfiguration;
+        }
+
+        public Dish(string initialRocksConfiguration)
+        {
+            rocksConfiguration = initialRocksConfiguration;
         }
 
         public int TotalLoad => 0;
 
         public void ShowConfiguration()
         {
-            for (int i = 0; i < 9; i++)
-            {
-                Console.WriteLine("..........");
-            }
-            Console.Write("..........");
+            Console.Write(rocksConfiguration);
         }
+
     }
 }
