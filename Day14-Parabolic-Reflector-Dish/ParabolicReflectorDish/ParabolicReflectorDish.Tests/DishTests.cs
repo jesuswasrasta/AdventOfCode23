@@ -36,6 +36,26 @@ namespace ParabolicReflectorDish.Tests
             Assert.That(outputStream.ToString(), Is.EqualTo(expectedConfiguration));
         }
 
+        [Test(Description = "Posso creare un disco con una configurazione iniziale a scelta")]
+        public void ConfigurazioneInizialeCustom() {
+            var expectedConfiguration =
+                "...O......" + Environment.NewLine +
+                "....O....." + Environment.NewLine +
+                ".....#...." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                "..........";
+
+
+            var dish = new Dish(expectedConfiguration);
+            dish.ShowConfiguration();
+            Assert.That(outputStream.ToString(), Is.EqualTo(expectedConfiguration));
+        }
+
         private string EmptyConfiguration()
         {
             var puntini = "..........";
@@ -62,6 +82,11 @@ namespace ParabolicReflectorDish.Tests
 
     public class Dish
     {
+        public Dish(string expectedConfiguration)
+        {
+            throw new NotImplementedException();
+        }
+
         public int TotalLoad => 0;
 
         public void ShowConfiguration()
