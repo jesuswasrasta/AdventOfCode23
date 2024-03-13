@@ -40,7 +40,7 @@ namespace ParabolicReflectorDish.Tests
 
             var dish = new Dish();
             dish.ShowConfiguration();
-            Assert.That(outputStream.ToString() == expectedConfiguration);
+            Assert.AreEqual(expectedConfiguration, outputStream.ToString());
         }
 
         private StringWriter GetOutputStream()
@@ -56,5 +56,14 @@ namespace ParabolicReflectorDish.Tests
     public class Dish
     {
         public int TotalLoad => 0;
+
+        public void ShowConfiguration()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                Console.WriteLine("..........");
+            }
+            Console.Write("..........");
+        }
     }
 }
