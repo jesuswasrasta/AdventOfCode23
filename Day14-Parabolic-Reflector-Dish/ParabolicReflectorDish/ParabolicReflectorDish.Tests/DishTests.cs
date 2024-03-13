@@ -56,6 +56,26 @@ namespace ParabolicReflectorDish.Tests
             Assert.That(outputStream.ToString(), Is.EqualTo(expectedConfiguration));
         }
 
+        [Test(Description = "Il carico di una configurazione con una roccia tonda in riga 1 e una roccia tonda in riga 2 è 19")]
+        public void Carico19ConRocciaRiga1e2()
+        {
+            var initialConfiguration =
+                "...O......" + Environment.NewLine +
+                "....O....." + Environment.NewLine +
+                ".....#...." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                ".........." + Environment.NewLine +
+                "..........";
+
+
+            var dish = new Dish(initialConfiguration);
+            Assert.That(dish.TotalLoad, Is.EqualTo(19));
+        }
+
         private string EmptyConfiguration()
         {
             var puntini = "..........";
